@@ -1,0 +1,104 @@
+{
+  "name": "dart-code-lens",
+  "displayName": "dart code lens",
+  "description": "dart code lens, 显示引用次数",
+  "version": "0.0.3",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "publisher": "ZhengWei513",
+  "author": {
+    "name": "ZhengWei513"
+  },
+  "keywords": [
+    "dart",
+    "code lens",
+    "dart code lens"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:dart"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [],
+    "configuration": {
+      "title": "Dart Code Lens",
+      "properties": {
+        "dartCodeLens.enabled": {
+          "type": "boolean",
+          "description": "控制是否显示 codeLens",
+          "default": true
+        },
+        "dartCodeLens.SymbolKind": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Class",
+              "Method",
+              "Property",
+              "Field",
+              "Constructor",
+              "Enum",
+              "Function",
+              "Variable",
+              "Constant",
+              "EnumMember"
+            ],
+            "enumDescriptions": [
+              "类（如 Java/Python/TS 的 class 类）",
+              "类/对象的方法（带参数的函数）",
+              "类/对象的属性（成员变量）",
+              "类的字段（通常指实例变量/成员变量，与 Property 类似，部分语言区分）",
+              "类的构造函数",
+              "枚举类型（如 TS/Java 的 enum 枚举）",
+              "独立函数（非类方法）",
+              "变量（局部/全局）",
+              "常量（如 const 定义的变量）",
+              "枚举成员（枚举中的具体值）"
+            ]
+          },
+          "default": [
+            "Class",
+            "Method",
+            "Function"
+          ],
+          "uniqueItems": true,
+          "description": "要显示引用次数的类型（多选）"
+        }
+      }
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/j787701730/dart-code-lens.git"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.107.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.27.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3"
+  }
+}
