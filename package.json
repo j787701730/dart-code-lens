@@ -2,7 +2,7 @@
   "name": "dart-code-lens",
   "displayName": "dart code lens",
   "description": "dart code lens, 显示引用次数",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.107.0"

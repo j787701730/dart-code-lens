@@ -84,6 +84,10 @@ class DartFunctionCodeLensProvider implements vscode.CodeLensProvider {
       // console.log(symbol);
       if (this.config.SymbolKind.includes(symbol.kind)) {
         functions.push(symbol);
+        // ! 类型里层属性,变量等会自动引用次数 性能太差
+        // if (symbol.children.length > 0) {
+        //   functions.push(...this.extractAllFunctions(symbol.children, true));
+        // }
       }
       // 递归处理子符号（比如类中的方法、嵌套函数）
       if (symbol.children.length > 0) {
